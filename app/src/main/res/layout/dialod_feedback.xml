@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical|center_horizontal">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/im_dialog_smile"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        />
+
+    <EditText
+        android:id="@+id/et_dialog_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:fontFamily="sans-serif"
+        android:hint="@string/user_name"
+        android:inputType="textPersonName"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/et_dialog_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_edit_black_24dp"
+        android:inputType="text|textMultiLine"/>
+
+</LinearLayout>

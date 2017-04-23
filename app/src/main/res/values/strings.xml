@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Відгуки</string>
+
+    <string name="send">Відправити</string>
+    <string name="cancel">Відміна</string>
+
+    <string name="required">Обов\'язкове поле</string>
+
+    <string name="user_name">Ім\'я</string>
+    <string name="show_list_fragment">Список відгуків</string>
+    <string name="show_feed_fragment">Залишити відгук</string>
+    <string name="description">Пояснення</string>
+    <string name="load_data">Завантаження данних</string>
+
+    <string-array name="hint_text_arr">
+        <item name="bad_text">Що сталось ?</item>
+        <item name="neutral_text">Що могло б бути краще ?</item>
+        <item name="good_text">Яку важливу для Вас мед. допомогу Базисмед не може Вам надати ?</item>
+    </string-array>
+
+    <string-array name="answer_arr">
+        <item name="bad_answer">Дякую за звернення. Я, директор О.Самбольський, прийму відповідні міри сьогодні ж !</item>
+        <item name="neutral_answer">Дякуємо. Постараємось покращити ще до наступного Вашого візиту.</item>
+        <item name="good_answer">Дякуємо. команда Базисмед почне надавати найбільш професійну допомогу по Вашій потребі якомога скоріше.</item>
+    </string-array>
+
+    <string-array name="smile_title">
+        <item>Негативне</item>
+        <item>Нейтральне</item>
+        <item>Позитивне</item>
+    </string-array>_
+
+    <string-array name="smile_res">
+        <item>@mipmap/ic_bad_smile</item>
+        <item>@mipmap/ic_neutral_smile</item>
+        <item>@mipmap/ic_good_smile</item>
+    </string-array>
+
+</resources>
