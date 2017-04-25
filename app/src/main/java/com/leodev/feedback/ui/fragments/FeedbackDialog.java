@@ -1,7 +1,7 @@
 package com.leodev.feedback.ui.fragments;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.leodev.feedback.R;
 
@@ -26,6 +27,13 @@ public class FeedbackDialog extends DialogFragment {
 
     @BindView(R.id.et_dialog_text)
     EditText mText;
+    @BindView(R.id.btn_dialog_send)
+    Button mSend;
+    @BindView(R.id.btn_dialog_cancel)
+    Button mCancel;
+    @BindView(R.id.iv_dialog_close)
+    ImageView mCloseDialog;
+
 
     public interface FeedbackDialogCallback{
         void onSendClick(int idSmile, String text);
@@ -60,28 +68,36 @@ public class FeedbackDialog extends DialogFragment {
 
         final AlertDialog dialog = new AlertDialog.Builder(getContext())
                 .setView(view)
-                .setTitle(getResources().getStringArray(R.array.smile_title)[smileId])
-                .setPositiveButton(R.string.send, null)
-                .setNegativeButton(R.string.cancel, null)
                 .create();
 
-        dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+        dialog.getWindow().setBackgroundDrawable( new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        initClickListeners(dialog);
+
+        return dialog;
+    }
+
+    private void initClickListeners(final AlertDialog dialog){
+        mSend.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onShow(DialogInterface d) {
-                Button doneBtn = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                doneBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (!TextUtils.isEmpty(mText.getText().toString())){
-                            mCallback.onSendClick(smileId, mText.getText().toString());
-                            dialog.dismiss();
-                        }else {
-                            dialog.dismiss();
-                        }
-                    }
-                });
+            public void onClick(View v) {
+                if (!TextUtils.isEmpty(mText.getText().toString())){
+                    mCallback.onSendClick(smileId, mText.getText().toString());
+                }
+                dialog.dismiss();
             }
         });
-        return dialog;
+        mCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        mCloseDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 }
