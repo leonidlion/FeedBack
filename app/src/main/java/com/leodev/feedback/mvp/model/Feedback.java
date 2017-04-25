@@ -8,19 +8,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Feedback implements Parcelable{
-    public static final String MAP_DATE = "Date";
-    public static final String MAP_NAME = "Name";
-    public static final String MAP_TEXT = "Text";
+    private static final String MAP_DATE = "Date";
+    private static final String MAP_TIME = "Time";
+    private static final String MAP_TEXT = "Text";
 
     private String Date;
-    private String Name;
+    private String Time;
     private String Text;
 
     public Feedback(){}
 
     protected Feedback(Parcel in) {
         Date = in.readString();
-        Name = in.readString();
+        Time = in.readString();
         Text = in.readString();
     }
 
@@ -44,12 +44,12 @@ public class Feedback implements Parcelable{
         this.Date = date;
     }
 
-    public String getName() {
-        return Name;
+    public void setTime(String time) {
+        this.Time = time;
     }
 
-    public void setName(String name) {
-        this.Name = name;
+    public String getTime(){
+        return Time;
     }
 
     public String getText() {
@@ -68,14 +68,14 @@ public class Feedback implements Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(Date);
-        dest.writeString(Name);
+        dest.writeString(Time);
         dest.writeString(Text);
     }
 
     public Map<String, Object> getFeedMap(){
         HashMap<String, Object> map = new HashMap<>();
         map.put(MAP_DATE, getDate());
-        map.put(MAP_NAME, getName());
+        map.put(MAP_TIME, getTime());
         map.put(MAP_TEXT, getText());
         return map;
     }

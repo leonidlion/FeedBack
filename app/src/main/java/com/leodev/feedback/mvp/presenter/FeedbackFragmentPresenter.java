@@ -37,12 +37,14 @@ public class FeedbackFragmentPresenter extends MvpPresenter<FeedbackView> {
         getViewState().showDialog(smileId);
     }
 
-    public void sendDataToDatabase(final int idSmile, String name, String text) {
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.US);
-        String date = format.format(new Date());
+    public void sendDataToDatabase(final int idSmile, String text) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.US);
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm", Locale.US);
+        String date = dateFormat.format(new Date());
+        String time = timeFormat.format(new Date());
         Feedback feedback = new Feedback();
         feedback.setDate(date);
-        feedback.setName(name);
+        feedback.setTime(time);
         feedback.setText(text);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();

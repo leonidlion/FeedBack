@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,16 +27,13 @@ public class FeedbackFragment extends MvpAppCompatFragment implements FeedbackVi
     }
 
     public static FeedbackFragment newInstance() {
-        Log.d(TAG, "newInstance: ");
         return new FeedbackFragment();
     }
 
     public FeedbackFragment(){}
 
-    private static final String TAG = "FeedbackFragment";
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: ");
         View view = inflater.inflate(R.layout.fragment_smiles, container, false);
         ButterKnife.bind(this, view);
         return view;
@@ -45,7 +41,6 @@ public class FeedbackFragment extends MvpAppCompatFragment implements FeedbackVi
 
     @Override
     public void showDialog(int smileId) {
-        Log.d(TAG, "showDialog: ");
         Bundle args = new Bundle();
         args.putInt(FeedbackDialog.KEY_SMILE, smileId);
         DialogFragment dialog = new FeedbackDialog();
@@ -54,14 +49,12 @@ public class FeedbackFragment extends MvpAppCompatFragment implements FeedbackVi
     }
 
     @Override
-    public void onSendClick(final int idSmile, String name, String text) {
-        Log.d(TAG, "onSendClick: ");
-        mPresenter.sendDataToDatabase(idSmile, name, text);
+    public void onSendClick(final int idSmile, String text) {
+        mPresenter.sendDataToDatabase(idSmile, text);
     }
 
     @Override
     public void showMessage(int arrIndexId){
-        Log.d(TAG, "showMessage: ");
         new AlertDialog.Builder(getContext())
                 .setMessage(getResources().getStringArray(R.array.answer_arr)[arrIndexId])
                 .show();

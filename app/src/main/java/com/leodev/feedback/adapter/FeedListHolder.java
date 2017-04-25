@@ -25,7 +25,6 @@ public class FeedListHolder extends RecyclerView.ViewHolder {
 
         public void bind(Feedback feedback){
             mDate.setText(feedback.getDate());
-            mName.setText(feedback.getName());
             mText.setText(feedback.getText());
         }
 }
