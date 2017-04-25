@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "685616653769-5467ed0pk8g93uit6roo7nghnelckv6q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.leodev.feedback",
+            "certificate_hash": "ea4e8c95e371b0bf853c354d23914f0a7b90880a"
+          }
+        },
+        {
           "client_id": "685616653769-gvfaioluksg8aoekdqi744u389mc6kkr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
