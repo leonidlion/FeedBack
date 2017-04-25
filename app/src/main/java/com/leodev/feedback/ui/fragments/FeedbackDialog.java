@@ -16,13 +16,25 @@ import android.widget.ImageView;
 
 import com.leodev.feedback.R;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class FeedbackDialog extends DialogFragment {
+    private static final int AUTO_CLOSE_TIME = 10 * 1000;
+    private AlertDialog mAlertDialog;
     private FeedbackDialogCallback mCallback;
+    private View.OnClickListener mDismissListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            mAlertDialog.dismiss();
+        }
+    };
     private int smileId;
+
     public static final String KEY_SMILE = "KEY_SMILE_ID";
 
     @BindView(R.id.et_dialog_text)
@@ -64,40 +76,44 @@ public class FeedbackDialog extends DialogFragment {
         View view = inflater.inflate(R.layout.dialod_feedback, null);
         ButterKnife.bind(this, view);
 
-        mText.setHint(getResources().getStringArray(R.array.hint_text_arr)[smileId]);
-
-        final AlertDialog dialog = new AlertDialog.Builder(getContext())
+        mAlertDialog = new AlertDialog.Builder(getContext())
                 .setView(view)
                 .create();
+        mAlertDialog.getWindow().setBackgroundDrawable( new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-        dialog.getWindow().setBackgroundDrawable( new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        mText.setHint(getResources().getStringArray(R.array.hint_text_arr)[smileId]);
 
-        initClickListeners(dialog);
+        initAutoCloseTimer();
+        initClickListeners();
 
-        return dialog;
+        return mAlertDialog;
     }
 
-    private void initClickListeners(final AlertDialog dialog){
+    private void initClickListeners(){
         mSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!TextUtils.isEmpty(mText.getText().toString())){
                     mCallback.onSendClick(smileId, mText.getText().toString());
                 }
-                dialog.dismiss();
+                mAlertDialog.dismiss();
             }
         });
-        mCancel.setOnClickListener(new View.OnClickListener() {
+        mCancel.setOnClickListener(mDismissListener);
+        mCloseDialog.setOnClickListener(mDismissListener);
+    }
+
+    private void initAutoCloseTimer(){
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
             @Override
-            public void onClick(View v) {
-                dialog.dismiss();
+            public void run() {
+                if (mAlertDialog.isShowing() &&
+                        TextUtils.isEmpty(mText.getText().toString())){
+                    mAlertDialog.dismiss();
+                    timer.cancel();
+                }
             }
-        });
-        mCloseDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        }, AUTO_CLOSE_TIME);
     }
 }
