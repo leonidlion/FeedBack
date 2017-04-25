@@ -39,7 +39,7 @@ public class FeedbackFragmentPresenter extends MvpPresenter<FeedbackView> {
 
     public void sendDataToDatabase(final int idSmile, String text) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.US);
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm", Locale.US);
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.US);
         String date = dateFormat.format(new Date());
         String time = timeFormat.format(new Date());
         Feedback feedback = new Feedback();
