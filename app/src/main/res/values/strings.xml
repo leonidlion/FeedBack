@@ -11,7 +11,15 @@
     <string name="show_feed_fragment">Залишити відгук</string>
     <string name="description">Пояснення</string>
     <string name="load_data">Завантаження данних</string>
-
+    <string name="sign_in_email">Email</string>
+    <string name="sign_in_pass">Password</string>
+    <string name="sign_in_login">Увійти</string>
+    <string name="auth_message">Авторизація</string>
+    <string name="wrong_auth">Невірний логін або пароль!</string>
+    <string name="min_sumb">мін. 6 символів</string>
+    <string name="wrong_email">Некоректна пошта</string>
+    <string name="play_service_out_date">Для роботи додатку потрібно оновити Play Services</string>
+    <string name="err_internet_connection">Перевірте інтернет підключення</string>
     <string-array name="hint_text_arr">
         <item name="bad_text">Що сталось ?</item>
         <item name="neutral_text">Що могло б бути краще ?</item>
@@ -28,7 +36,7 @@
         <item>Негативне</item>
         <item>Нейтральне</item>
         <item>Позитивне</item>
-    </string-array>_
+    </string-array>
 
     <string-array name="smile_res">
         <item>@mipmap/ic_bad_smile</item>
