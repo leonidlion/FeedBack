@@ -11,11 +11,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class FeedListHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.tv_date)
-        TextView mDate;
-        @BindView(R.id.tv_name)
-        TextView mName;
-        @BindView(R.id.tv_text)
+        @BindView(R.id.tv_number)
+        TextView mNumber;
+        @BindView(R.id.tv_time)
+        TextView mTime;
+        @BindView(R.id.tv_description)
         TextView mText;
 
         public FeedListHolder(View itemView) {
@@ -23,8 +23,9 @@ public class FeedListHolder extends RecyclerView.ViewHolder {
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(Feedback feedback){
-            mDate.setText(feedback.getDate());
+        public void bind(Feedback feedback, int position){
+            mNumber.setText(String.valueOf(++position));
+            mTime.setText(feedback.getTime());
             mText.setText(feedback.getText());
         }
 }

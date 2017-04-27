@@ -20,6 +20,12 @@
     <string name="wrong_email">Некоректна пошта</string>
     <string name="play_service_out_date">Для роботи додатку потрібно оновити Play Services</string>
     <string name="err_internet_connection">Перевірте інтернет підключення</string>
+
+    <string name="header_number">№</string>
+    <string name="header_time">Час</string>
+    <string name="header_text">Текст</string>
+    <string name="count_text">Загальна к-сть: %1$d</string>
+    <string name="all_feed">Всі</string>
     <string-array name="hint_text_arr">
         <item name="bad_text">Що сталось ?</item>
         <item name="neutral_text">Що могло б бути краще ?</item>

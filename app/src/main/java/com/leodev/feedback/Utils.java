@@ -10,11 +10,17 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class Utils {
     public static final int ROOT_BAD = 0;
     public static final int ROOT_NEUTRAL = 1;
     public static final int ROOT_GOOD = 2;
+
+    public static final String CHILD_DATE = "Date";
+    public static final String CHILD_TEXT = "Text";
+    public static final String CHILD_TIME = "Time";
+
 
     public static DatabaseReference getFeedbackReference(String child){
         return FirebaseDatabase.getInstance().getReference().child(child);
@@ -30,6 +36,11 @@ public class Utils {
                 return "good_feed";
             default: return "";
         }
+    }
+
+    public static Query getChildByDate(int rootId, String date){
+        return FirebaseDatabase.getInstance().getReference().child(getFeedRoot(rootId))
+                .orderByChild(CHILD_DATE).equalTo(date);
     }
 
     public static boolean isPlayServiceUpdated(Context context){
