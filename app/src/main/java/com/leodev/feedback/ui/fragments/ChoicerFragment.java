@@ -36,6 +36,8 @@ public class ChoicerFragment extends Fragment {
                 }else {
                     startActivityForResult(new Intent(getContext(), AuthActivity.class), AUTH_REQUEST);
                 }
+               /* EventBus.getDefault()
+                        .post(new EventMainChangeFragment(FeedbackTabFragment.newInstance(), true));*/
                 break;
         }
     }
