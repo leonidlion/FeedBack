@@ -7,16 +7,20 @@
     <TextView
         android:id="@+id/tv_number"
         tools:text="#"
-        android:layout_width="20dp"
+        android:textSize="@dimen/text_list_size"
+        android:layout_width="40dp"
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/tv_time"
         tools:text="Time"
-        android:layout_width="50dp"
+        android:layout_width="wrap_content"
+        android:paddingRight="24dp"
+        android:textSize="@dimen/text_list_size"
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/tv_description"
         android:layout_width="match_parent"
+        android:textSize="@dimen/text_list_size"
         tools:text="Text"
         android:layout_height="wrap_content"/>
 </LinearLayout>

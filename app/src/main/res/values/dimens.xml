@@ -6,4 +6,6 @@
     <dimen name="button_close_margin">40dp</dimen>
     <dimen name="drawable_edit_padding">4dp</dimen>
     <dimen name="text_dialog_size">18sp</dimen>
+    <dimen name="text_header_size">24sp</dimen>
+    <dimen name="text_list_size">20sp</dimen>
 </resources>

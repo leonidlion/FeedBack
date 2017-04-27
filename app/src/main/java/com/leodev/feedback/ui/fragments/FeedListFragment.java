@@ -3,6 +3,7 @@ package com.leodev.feedback.ui.fragments;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -55,6 +56,7 @@ public class FeedListFragment extends MvpAppCompatFragment implements FeedbackLi
         View view = inflater.inflate(R.layout.fragment_feed_list_item, container, false);
         ButterKnife.bind(this, view);
         mPresenter.initDataForHeader(getArguments().getInt(ARGS_PAGE_TITLE));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         return view;
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:padding="16dp"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               xmlns:tools="http://schemas.android.com/tools"
@@ -8,38 +9,57 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/tv_feed_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textSize="@dimen/text_dialog_size"
             tools:text="Count: 10"/>
+
         <Spinner
             android:id="@+id/sp_feed_dates"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"/>
     </RelativeLayout>
 
     <LinearLayout
+        android:layout_marginTop="3dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/tv_header_number"
-            android:layout_width="20dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/header_number"/>
+            android:paddingRight="24dp"
+            android:text="@string/header_number"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="@dimen/text_header_size"
+            android:textStyle="bold|italic"/>
+
         <TextView
             android:id="@+id/tv_header_time"
-            android:layout_width="50dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/header_time"/>
+            android:paddingRight="24dp"
+            android:text="@string/header_time"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="@dimen/text_header_size"
+            android:textStyle="bold|italic"/>
+
         <TextView
             android:id="@+id/tv_header_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/header_text"/>
+            android:text="@string/header_text"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="@dimen/text_header_size"
+            android:textStyle="bold|italic"/>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
