@@ -44,10 +44,4 @@
         <item>Позитивне</item>
     </string-array>
 
-    <string-array name="smile_res">
-        <item>@mipmap/ic_bad_smile</item>
-        <item>@mipmap/ic_neutral_smile</item>
-        <item>@mipmap/ic_good_smile</item>
-    </string-array>
-
 </resources>
