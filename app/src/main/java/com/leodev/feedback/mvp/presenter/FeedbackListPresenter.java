@@ -26,7 +26,7 @@ public class FeedbackListPresenter extends MvpPresenter<FeedbackListView> {
         public void onDataChange(DataSnapshot dataSnapshot) {
             Set<String> dates = new LinkedHashSet<>();
             for (DataSnapshot x : dataSnapshot.getChildren()){
-                dates.add(x.getValue(Feedback.class).getDate());
+                dates.add(Utils.getDateFromLong(x.getValue(Feedback.class).getDate()));
             }
             getViewState().setHeaderData(dataSnapshot.getChildrenCount(), dates);
         }

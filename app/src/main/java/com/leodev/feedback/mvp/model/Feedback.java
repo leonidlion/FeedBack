@@ -9,18 +9,15 @@ import java.util.Map;
 
 public class Feedback implements Parcelable{
     private static final String MAP_DATE = "Date";
-    private static final String MAP_TIME = "Time";
     private static final String MAP_TEXT = "Text";
 
-    private String Date;
-    private String Time;
+    private long Date;
     private String Text;
 
     public Feedback(){}
 
     protected Feedback(Parcel in) {
-        Date = in.readString();
-        Time = in.readString();
+        Date = in.readLong();
         Text = in.readString();
     }
 
@@ -36,20 +33,12 @@ public class Feedback implements Parcelable{
         }
     };
 
-    public String getDate() {
+    public long getDate() {
         return Date;
     }
 
-    public void setDate(String date) {
+    public void setDate(long date) {
         this.Date = date;
-    }
-
-    public void setTime(String time) {
-        this.Time = time;
-    }
-
-    public String getTime(){
-        return Time;
     }
 
     public String getText() {
@@ -67,15 +56,13 @@ public class Feedback implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(Date);
-        dest.writeString(Time);
+        dest.writeLong(Date);
         dest.writeString(Text);
     }
 
     public Map<String, Object> getFeedMap(){
         HashMap<String, Object> map = new HashMap<>();
         map.put(MAP_DATE, getDate());
-        map.put(MAP_TIME, getTime());
         map.put(MAP_TEXT, getText());
         return map;
     }

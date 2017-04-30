@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.leodev.feedback.R;
+import com.leodev.feedback.Utils;
 import com.leodev.feedback.mvp.model.Feedback;
 
 import butterknife.BindView;
@@ -25,7 +26,7 @@ public class FeedListHolder extends RecyclerView.ViewHolder {
 
         public void bind(Feedback feedback, int position){
             mNumber.setText(String.valueOf(++position));
-            mTime.setText(feedback.getTime());
+            mTime.setText(Utils.getTimeFromLong(feedback.getDate()));
             mText.setText(feedback.getText());
         }
 }

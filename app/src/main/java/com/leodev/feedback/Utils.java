@@ -12,15 +12,26 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 public class Utils {
     public static final int ROOT_BAD = 0;
     public static final int ROOT_NEUTRAL = 1;
     public static final int ROOT_GOOD = 2;
 
     public static final String CHILD_DATE = "Date";
-    public static final String CHILD_TEXT = "Text";
-    public static final String CHILD_TIME = "Time";
 
+    private static SimpleDateFormat mDateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.US);
+    private static SimpleDateFormat mTimeFormat = new SimpleDateFormat("HH:mm", Locale.US);
+
+    public static String getDateFromLong(long unixTime){
+        return mDateFormat.format(unixTime);
+    }
+
+    public static String getTimeFromLong(long unixTime){
+        return mTimeFormat.format(unixTime);
+    }
 
     public static DatabaseReference getFeedbackReference(String child){
         return FirebaseDatabase.getInstance().getReference().child(child);
