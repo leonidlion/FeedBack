@@ -25,7 +25,13 @@
     <string name="header_time">Час</string>
     <string name="header_text">Текст</string>
     <string name="count_text">Загальна к-сть: %1$d</string>
+
     <string name="all_feed">Всі</string>
+    <string name="week_feed">Тиждень</string>
+    <string name="month_feed">Місяць</string>
+    <string name="year_feed">Рік</string>
+    <string name="custom_feed">За період</string>
+
     <string-array name="hint_text_arr">
         <item name="bad_text">Що сталось ?</item>
         <item name="neutral_text">Що могло б бути краще ?</item>
