@@ -13,71 +13,129 @@ import com.leodev.feedback.adapter.FeedListHolder;
 import com.leodev.feedback.mvp.model.Feedback;
 import com.leodev.feedback.mvp.view.FeedbackListView;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 @InjectViewState
 public class FeedbackListPresenter extends MvpPresenter<FeedbackListView> {
+    private static final int ALL_FEED       = 0;
+    private static final int WEEK_FEED      = 1;
+    private static final int MONTH_FEED     = 2;
+    private static final int YEAR_FEED      = 3;
+    private static final int CUSTOM_FEED    = 4;
+
+    private Calendar mCalendar;
     private int mChildId;
-    private Query mQuery;
-    private FirebaseRecyclerAdapter<Feedback, FeedListHolder> mAdapter;
-    private ValueEventListener mListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-            Set<String> dates = new LinkedHashSet<>();
-            for (DataSnapshot x : dataSnapshot.getChildren()){
-                dates.add(Utils.getDateFromLong(x.getValue(Feedback.class).getDate()));
-            }
-            getViewState().setHeaderData(dataSnapshot.getChildrenCount(), dates);
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-
-        }
-    };
 
     public void initDataForHeader(int childId){
+        initCalendar();
         getViewState().showDialog();
         mChildId = childId;
-        mQuery = Utils.getFeedbackReference(Utils.getFeedRoot(mChildId));
-        mQuery.addValueEventListener(mListener);
+        showAllFeed();
     }
 
-    public void showFeedByDate(String date){
-        Query query = Utils.getChildByDate(mChildId, date);
+    public void onItemSelected(int position){
+        switch (position){
+            case ALL_FEED:
+                showAllFeed();
+                break;
+            case WEEK_FEED:
+                showWeekFeeds();
+                break;
+            case MONTH_FEED:
+                showMonthFeeds();
+                break;
+            case YEAR_FEED:
+                showYearFeeds();
+                break;
+            case CUSTOM_FEED:
+                getViewState().showDatePickerDialog();
+                break;
+        }
+    }
+
+    public void showFeedByDate(long timeFrom, long timeTo){
+        Query query = Utils.getChildByDateRange(
+                mChildId,
+                timeFrom
+                ,timeTo);
         updateAdapter(query);
-        getViewState().initRecycler(mAdapter);
     }
 
-    public void showAllFeed(){
+    // ==== HELPERS =====
+    private void initCalendar(){
+        mCalendar = Calendar.getInstance(Locale.UK);
+        mCalendar.set(Calendar.HOUR_OF_DAY, 0);
+        mCalendar.clear(Calendar.MINUTE);
+        mCalendar.clear(Calendar.SECOND);
+        mCalendar.clear(Calendar.MILLISECOND);
+    }
+
+    private void showAllFeed(){
         Query query = Utils.getFeedbackReference(Utils.getFeedRoot(mChildId));
         updateAdapter(query);
     }
 
+    private void showWeekFeeds(){
+        mCalendar.set(Calendar.DAY_OF_WEEK, mCalendar.getFirstDayOfWeek());
+        Query query = Utils.getChildByDateRange(
+                mChildId,
+                mCalendar.getTimeInMillis(),
+                Calendar.getInstance(Locale.UK).getTimeInMillis());
+        updateAdapter(query);
+    }
+
+    private void showMonthFeeds(){
+        mCalendar.set(Calendar.DAY_OF_MONTH, 1);
+        Calendar lastDayOfMonth = Calendar.getInstance();
+        lastDayOfMonth.set(Calendar.DATE, lastDayOfMonth.getActualMaximum(Calendar.DATE));
+        Query query = Utils.getChildByDateRange(
+                mChildId,
+                mCalendar.getTimeInMillis(),
+                lastDayOfMonth.getTimeInMillis());
+        updateAdapter(query);
+    }
+
+    private void showYearFeeds(){
+        int currentYear = Calendar.getInstance(Locale.UK).get(Calendar.YEAR);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, currentYear);
+        calendar.set(Calendar.DAY_OF_YEAR, 1);
+        Date startYear = calendar.getTime();
+
+        calendar.set(Calendar.MONTH, Calendar.DECEMBER);
+        calendar.set(Calendar.DAY_OF_MONTH, 31);
+
+        Date endYear = calendar.getTime();
+
+        Query query = Utils.getChildByDateRange(
+                mChildId,
+                startYear.getTime(),
+                endYear.getTime());
+        updateAdapter(query);
+    }
+
     private void updateAdapter(Query query){
-        mAdapter = new FirebaseRecyclerAdapter<Feedback, FeedListHolder>(
-                        Feedback.class, R.layout.feed_item, FeedListHolder.class, query) {
-                    @Override
-                    protected void populateViewHolder(FeedListHolder viewHolder, Feedback model, int position) {
-                        viewHolder.bind(model, position);
-                    }
-                };
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        final FirebaseRecyclerAdapter<Feedback, FeedListHolder> adapter = new FirebaseRecyclerAdapter<Feedback, FeedListHolder>(
+                Feedback.class, R.layout.feed_item, FeedListHolder.class, query) {
+            @Override
+            protected void populateViewHolder(FeedListHolder viewHolder, Feedback model, int position) {
+                viewHolder.bind(model, position);
+            }
+        };
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                getViewState().setCountFeed(dataSnapshot.getChildrenCount());
                 getViewState().hideDialog();
+                adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-        getViewState().initRecycler(mAdapter);
+        getViewState().initRecycler(adapter);
     }
-
-    public void unregisterDataListener(){
-        mQuery.removeEventListener(mListener);
-    }
-
 }

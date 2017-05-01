@@ -1,5 +1,6 @@
 package com.leodev.feedback.ui.fragments;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -18,12 +20,14 @@ import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.leodev.feedback.R;
+import com.leodev.feedback.Utils;
 import com.leodev.feedback.mvp.presenter.FeedbackListPresenter;
 import com.leodev.feedback.mvp.view.FeedbackListView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
-import java.util.Set;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +35,7 @@ import butterknife.ButterKnife;
 public class FeedListFragment extends MvpAppCompatFragment implements FeedbackListView {
     private static final String ARGS_PAGE_TITLE = "KEY_PAGE_TITLE";
     private ProgressDialog mProgressDialog;
-
+    private List<String> mSpinnerList = new ArrayList<>();
     @InjectPresenter
     FeedbackListPresenter mPresenter;
 
@@ -55,26 +59,32 @@ public class FeedListFragment extends MvpAppCompatFragment implements FeedbackLi
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_feed_list_item, container, false);
         ButterKnife.bind(this, view);
+        initSpinner();
+
         mPresenter.initDataForHeader(getArguments().getInt(ARGS_PAGE_TITLE));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         return view;
     }
 
     @Override
-    public void setHeaderData(long count, Set<String> arrDates){
-        List<String> list = new ArrayList<>();
-        list.addAll(arrDates);
-        list.add(0, getString(R.string.all_feed));
-        mCountText.setText(getString(R.string.count_text, count));
-        mSpinner.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, list));
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mProgressDialog = new ProgressDialog(getContext());
+        mProgressDialog.setMessage(getString(R.string.load_data));
+    }
+
+    private void initSpinner(){
+        mSpinnerList.add(getString(R.string.all_feed));
+        mSpinnerList.add(getString(R.string.week_feed));
+        mSpinnerList.add(getString(R.string.month_feed));
+        mSpinnerList.add(getString(R.string.year_feed));
+        mSpinnerList.add(getString(R.string.custom_feed));
+
+        mSpinner.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, mSpinnerList));
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0){
-                    mPresenter.showAllFeed();
-                }else {
-                    mPresenter.showFeedByDate(parent.getItemAtPosition(position).toString());
-                }
+                mPresenter.onItemSelected(position);
             }
 
             @Override
@@ -84,9 +94,34 @@ public class FeedListFragment extends MvpAppCompatFragment implements FeedbackLi
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mPresenter.unregisterDataListener();
+    public void showDatePickerDialog() {
+        getDateDialog(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                final long timeFrom = Utils.getUnixTime(year, month, dayOfMonth);
+                getDateDialog(new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        long timeTo = Utils.getUnixTime(year, month, dayOfMonth);
+                        mPresenter.showFeedByDate(timeFrom, timeTo);
+                    }
+                }).show();
+            }
+        }).show();
+    }
+
+    private DatePickerDialog getDateDialog(DatePickerDialog.OnDateSetListener listener){
+        final Calendar currentCalendar = Calendar.getInstance(Locale.UK);
+        return new DatePickerDialog(getContext(),
+                listener,
+                currentCalendar.get(Calendar.YEAR),
+                currentCalendar.get(Calendar.MONTH),
+                currentCalendar.get(Calendar.DAY_OF_MONTH));
+    }
+
+    @Override
+    public void setCountFeed(long childrenCount) {
+        mCountText.setText(getString(R.string.count_text, childrenCount));
     }
 
     @Override
@@ -107,12 +142,5 @@ public class FeedListFragment extends MvpAppCompatFragment implements FeedbackLi
         if (mProgressDialog != null && mProgressDialog.isShowing()){
             mProgressDialog.dismiss();
         }
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mProgressDialog = new ProgressDialog(getContext());
-        mProgressDialog.setMessage(getString(R.string.load_data));
     }
 }

@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class Utils {
@@ -33,6 +34,15 @@ public class Utils {
         return mTimeFormat.format(unixTime);
     }
 
+    public static long getUnixTime(int year, int month, int dayOfMonth){
+        final Calendar calendar = Calendar.getInstance(Locale.UK);
+        calendar.clear();
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        return calendar.getTimeInMillis();
+    }
+
     public static DatabaseReference getFeedbackReference(String child){
         return FirebaseDatabase.getInstance().getReference().child(child);
     }
@@ -49,9 +59,9 @@ public class Utils {
         }
     }
 
-    public static Query getChildByDate(int rootId, String date){
+    public static Query getChildByDateRange(int rootId, long startAt, long endAt){
         return FirebaseDatabase.getInstance().getReference().child(getFeedRoot(rootId))
-                .orderByChild(CHILD_DATE).equalTo(date);
+                .orderByChild(CHILD_DATE).startAt(startAt).endAt(endAt);
     }
 
     public static boolean isPlayServiceUpdated(Context context){
