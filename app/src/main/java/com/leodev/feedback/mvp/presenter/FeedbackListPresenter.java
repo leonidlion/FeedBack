@@ -27,6 +27,7 @@ public class FeedbackListPresenter extends MvpPresenter<FeedbackListView> {
 
     private Calendar mCalendar;
     private int mChildId;
+    private long timeFrom, timeTo;
 
     public void initDataForHeader(int childId){
         initCalendar();
@@ -38,24 +39,34 @@ public class FeedbackListPresenter extends MvpPresenter<FeedbackListView> {
     public void onItemSelected(int position){
         switch (position){
             case ALL_FEED:
+                resetCustomDates();
                 showAllFeed();
                 break;
             case WEEK_FEED:
+                resetCustomDates();
                 showWeekFeeds();
                 break;
             case MONTH_FEED:
+                resetCustomDates();
                 showMonthFeeds();
                 break;
             case YEAR_FEED:
+                resetCustomDates();
                 showYearFeeds();
                 break;
             case CUSTOM_FEED:
-                getViewState().showDatePickerDialog();
+                if (timeFrom != 0L && timeTo != 0L){
+                    showFeedByDate(timeFrom, timeTo);
+                }else {
+                    getViewState().showDatePickerDialog();
+                }
                 break;
         }
     }
 
     public void showFeedByDate(long timeFrom, long timeTo){
+        this.timeFrom = timeFrom;
+        this.timeTo = timeTo;
         Query query = Utils.getChildByDateRange(
                 mChildId,
                 timeFrom
@@ -137,5 +148,10 @@ public class FeedbackListPresenter extends MvpPresenter<FeedbackListView> {
             }
         });
         getViewState().initRecycler(adapter);
+    }
+
+    private void resetCustomDates(){
+        timeFrom = 0L;
+        timeTo = 0L;
     }
 }

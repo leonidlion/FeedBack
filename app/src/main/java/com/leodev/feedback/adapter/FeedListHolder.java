@@ -14,6 +14,8 @@ import butterknife.ButterKnife;
 public class FeedListHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_number)
         TextView mNumber;
+        @BindView(R.id.tv_date)
+        TextView mDate;
         @BindView(R.id.tv_time)
         TextView mTime;
         @BindView(R.id.tv_description)
@@ -26,6 +28,7 @@ public class FeedListHolder extends RecyclerView.ViewHolder {
 
         public void bind(Feedback feedback, int position){
             mNumber.setText(String.valueOf(++position));
+            mDate.setText(Utils.getDateFromLong(feedback.getDate()));
             mTime.setText(Utils.getTimeFromLong(feedback.getDate()));
             mText.setText(feedback.getText());
         }
