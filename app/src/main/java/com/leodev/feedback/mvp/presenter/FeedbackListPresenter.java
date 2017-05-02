@@ -27,36 +27,37 @@ public class FeedbackListPresenter extends MvpPresenter<FeedbackListView> {
 
     private Calendar mCalendar;
     private int mChildId;
-    private long timeFrom, timeTo;
+    private int mSpinnerPosition;
+    private long mTimeFrom, mTimeTo;
 
     public void initDataForHeader(int childId){
         initCalendar();
+        getViewState().initSpinner(mSpinnerPosition);
         getViewState().showDialog();
         mChildId = childId;
-        showAllFeed();
     }
 
     public void onItemSelected(int position){
+        mSpinnerPosition = position;
+        if (position != CUSTOM_FEED){
+            resetTimes();
+        }
         switch (position){
             case ALL_FEED:
-                resetCustomDates();
                 showAllFeed();
                 break;
             case WEEK_FEED:
-                resetCustomDates();
                 showWeekFeeds();
                 break;
             case MONTH_FEED:
-                resetCustomDates();
                 showMonthFeeds();
                 break;
             case YEAR_FEED:
-                resetCustomDates();
                 showYearFeeds();
                 break;
             case CUSTOM_FEED:
-                if (timeFrom != 0L && timeTo != 0L){
-                    showFeedByDate(timeFrom, timeTo);
+                if (mTimeFrom != 0L && mTimeTo != 0L){
+                    showFeedByDate(mTimeFrom, mTimeTo);
                 }else {
                     getViewState().showDatePickerDialog();
                 }
@@ -65,8 +66,8 @@ public class FeedbackListPresenter extends MvpPresenter<FeedbackListView> {
     }
 
     public void showFeedByDate(long timeFrom, long timeTo){
-        this.timeFrom = timeFrom;
-        this.timeTo = timeTo;
+        mTimeFrom = timeFrom;
+        mTimeTo = timeTo;
         Query query = Utils.getChildByDateRange(
                 mChildId,
                 timeFrom
@@ -150,8 +151,8 @@ public class FeedbackListPresenter extends MvpPresenter<FeedbackListView> {
         getViewState().initRecycler(adapter);
     }
 
-    private void resetCustomDates(){
-        timeFrom = 0L;
-        timeTo = 0L;
+    private void resetTimes(){
+        mTimeFrom = 0L;
+        mTimeTo = 0L;
     }
 }

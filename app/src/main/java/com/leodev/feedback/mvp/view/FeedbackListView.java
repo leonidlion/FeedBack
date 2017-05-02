@@ -14,4 +14,5 @@ public interface FeedbackListView extends MvpView {
     @StateStrategyType(SkipStrategy.class)
     void showDatePickerDialog();
     void setCountFeed(long childrenCount);
+    void initSpinner(int position);
 }
