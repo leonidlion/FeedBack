@@ -59,6 +59,18 @@ public class Utils {
         }
     }
 
+    public static String getEmptyMessage(int smileId){
+        switch (smileId){
+            case ROOT_BAD:
+                return "Негативне";
+            case ROOT_NEUTRAL:
+                return "Нейтральне";
+            case ROOT_GOOD:
+                return "Позитивне";
+            default: return "";
+        }
+    }
+
     public static Query getChildByDateRange(int rootId, long startAt, long endAt){
         return FirebaseDatabase.getInstance().getReference().child(getFeedRoot(rootId))
                 .orderByChild(CHILD_DATE).startAt(startAt).endAt(endAt);

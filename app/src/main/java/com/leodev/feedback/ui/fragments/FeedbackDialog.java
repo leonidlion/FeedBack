@@ -109,9 +109,7 @@ public class FeedbackDialog extends DialogFragment {
         mSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!TextUtils.isEmpty(mText.getText().toString())){
-                    mCallback.onSendClick(smileId, mText.getText().toString());
-                }
+                mCallback.onSendClick(smileId, mText.getText().toString());
                 mAlertDialog.dismiss();
             }
         });

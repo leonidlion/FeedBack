@@ -1,6 +1,7 @@
 package com.leodev.feedback.mvp.presenter;
 
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
@@ -36,6 +37,9 @@ public class FeedbackFragmentPresenter extends MvpPresenter<FeedbackView> {
     }
 
     public void sendDataToDatabase(final int idSmile, String text) {
+        if (TextUtils.isEmpty(text)){
+            text = Utils.getEmptyMessage(idSmile);
+        }
         Feedback feedback = new Feedback();
         feedback.setDate(new Date().getTime());
         feedback.setText(text);
