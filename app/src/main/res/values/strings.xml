@@ -6,10 +6,8 @@
 
     <string name="required">Обов\'язкове поле</string>
 
-    <string name="user_name">Ім\'я</string>
     <string name="show_list_fragment">Список відгуків</string>
     <string name="show_feed_fragment">Залишити відгук</string>
-    <string name="description">Пояснення</string>
     <string name="load_data">Завантаження данних</string>
     <string name="sign_in_email">Email</string>
     <string name="sign_in_pass">Password</string>
@@ -21,10 +19,6 @@
     <string name="play_service_out_date">Для роботи додатку потрібно оновити Play Services</string>
     <string name="err_internet_connection">Перевірте інтернет підключення</string>
 
-    <string name="header_number">№</string>
-    <string name="header_date">Дата</string>
-    <string name="header_time">Час</string>
-    <string name="header_text">Текст</string>
     <string name="count_text">Загальна к-сть: %1$d</string>
 
     <string name="all_feed">Всі</string>

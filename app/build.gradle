@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'FeedbackAlias'
+            keyPassword '123456'
+            storeFile file('C:/Users/Leonid/StudioProjects/FeedBack/feedback.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
@@ -16,6 +24,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -36,7 +45,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.arello-mobile:moxy-compiler:1.4.6'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
 }
