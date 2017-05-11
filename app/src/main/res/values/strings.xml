@@ -27,6 +27,13 @@
     <string name="year_feed">Рік</string>
     <string name="custom_feed">За період</string>
 
+    <!-- SMILES FRAGMENT -->
+    <string name="smile_text_header">Задоволені Базисмедом ?</string>
+    <string name="smile_second_header">натисніть пальцем на:</string>
+    <string name="bad_smile_caption">Сюди ні ногою !!!</string>
+    <string name="neutral_smile_caption">Очікувала(в) кращого…</string>
+    <string name="good_smile_caption">Так цілком !</string>
+
     <string-array name="hint_text_arr">
         <item name="bad_text">Що сталось ?</item>
         <item name="neutral_text">Що могло б бути краще ?</item>

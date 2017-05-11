@@ -8,4 +8,12 @@
     <dimen name="text_dialog_size">18sp</dimen>
     <dimen name="text_header_size">24sp</dimen>
     <dimen name="text_list_size">20sp</dimen>
+
+    <!-- smile fragment -->
+    <dimen name="logo_padding">16dp</dimen>
+    <dimen name="text_smile_header">24sp</dimen>
+    <dimen name="text_smile_header_second">14sp</dimen>
+    <dimen name="smile_padding_port">16dp</dimen>
+    <dimen name="smile_padding_land">16dp</dimen>
+
 </resources>
