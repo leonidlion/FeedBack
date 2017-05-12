@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:tools="http://schemas.android.com/tools">
+    <ImageView
+        android:id="@+id/feed_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="35dp"
+        app:srcCompat="@drawable/img_logo"/>
+    <TextView
+        android:id="@+id/feed_header"
+        android:textSize="@dimen/text_smile_header"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/feed_logo"
+        android:layout_marginTop="43dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        tools:text="Яку нову послугу ви хотіли б бачити \n у нашому медичному центрі?"/>
+
+    <EditText
+        android:id="@+id/feed_message"
+        android:background="@drawable/edit_border"
+        android:layout_width="match_parent"
+        android:inputType="text|textMultiLine"
+        android:textSize="@dimen/text_dialog_size"
+        android:scrollbars="vertical"
+        android:maxLines="5"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_margin="48dp"
+        android:ems="10"
+        android:layout_below="@+id/feed_header"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/feed_message"
+        android:layout_alignLeft="@+id/feed_message"
+        android:layout_alignStart="@+id/feed_message"
+        android:layout_alignRight="@+id/feed_message"
+        android:layout_alignEnd="@+id/feed_message">
+        <ImageView
+            android:id="@+id/feed_boss_image"
+            android:adjustViewBounds="true"
+            android:visibility="gone"
+            app:srcCompat="@drawable/boss"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:id="@+id/feed_text_hint"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:textSize="24sp"
+            android:textAlignment="textEnd"
+            android:layout_gravity="end"
+            tools:text="Дякуємо. команда Базисмед
+            почне надавати найбільш професійну
+            допомогу по Вашій потребі якомога скоріше."
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:background="@drawable/vertical_divider" />
+        <Button
+            android:id="@+id/feed_send"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:background="@drawable/button_feed"
+            tools:text="Додати послугу"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/feed_back_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginStart="48dp"
+        android:rotation="90"
+        app:srcCompat="@drawable/ic_arrow"/>
+
+    <TextView
+        android:id="@+id/feed_back_text"
+        android:textColor="#aa0a23"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/feed_back_icon"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_toEndOf="@+id/feed_back_icon"
+        android:layout_toRightOf="@+id/feed_back_icon"
+        android:text="@string/feed_fragment_back"
+        android:layout_alignTop="@+id/feed_back_icon"/>
+
+    <ImageView
+        android:id="@+id/feed_smile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/feed_back_icon"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        app:srcCompat="@drawable/ic_happy"/>
+
+    <TextView
+        android:id="@+id/feed_smile_caption"
+        android:textAllCaps="true"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/feed_back_text"
+        android:layout_alignEnd="@+id/feed_logo"
+        android:layout_alignRight="@+id/feed_logo"
+        tools:text="Так, цілком"
+        android:layout_alignTop="@+id/feed_smile"/>
+</RelativeLayout>

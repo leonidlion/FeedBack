@@ -11,9 +11,13 @@
 
     <!-- smile fragment -->
     <dimen name="logo_padding">16dp</dimen>
-    <dimen name="text_smile_header">24sp</dimen>
+    <dimen name="smile_header_padding">8dp</dimen>
+    <dimen name="smile_image_padding">48dp</dimen>
+    <dimen name="smile_caption_size">12sp</dimen>
+    <dimen name="smile_caption_bottom_margin">8dp</dimen>
+    <dimen name="text_smile_header">20sp</dimen>
     <dimen name="text_smile_header_second">14sp</dimen>
     <dimen name="smile_padding_port">16dp</dimen>
     <dimen name="smile_padding_land">16dp</dimen>
-
+    <dimen name="logo_size">86dp</dimen>
 </resources>

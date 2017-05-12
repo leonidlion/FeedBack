@@ -10,12 +10,13 @@ import android.view.WindowManager;
 import com.leodev.feedback.R;
 import com.leodev.feedback.event.EventMainChangeFragment;
 import com.leodev.feedback.ui.fragments.ChoicerFragment;
+import com.leodev.feedback.ui.fragments.SendMessageFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SendMessageFragment.OnBackPressedListener{
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,5 +59,20 @@ public class MainActivity extends AppCompatActivity {
             transaction.addToBackStack(null);
         }
         transaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        int count = getSupportFragmentManager().getBackStackEntryCount();
+        if (count == 0){
+            super.onBackPressed();
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
+    }
+
+    @Override
+    public void onBackClick() {
+        getSupportFragmentManager().popBackStack();
     }
 }

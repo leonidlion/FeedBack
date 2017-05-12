@@ -13,8 +13,13 @@
     <dimen name="text_list_size">24sp</dimen>
 
     <dimen name="logo_padding">24dp</dimen>
+    <dimen name="smile_header_padding">24dp</dimen>
+    <dimen name="smile_image_padding">64dp</dimen>
+    <dimen name="smile_caption_size">24sp</dimen>
+    <dimen name="smile_caption_bottom_margin">18dp</dimen>
     <dimen name="text_smile_header">48sp</dimen>
     <dimen name="text_smile_header_second">24sp</dimen>
     <dimen name="smile_padding_port">64dp</dimen>
     <dimen name="smile_padding_land">64dp</dimen>
+    <dimen name="logo_size">200dp</dimen>
 </resources>
