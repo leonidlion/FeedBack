@@ -6,15 +6,14 @@
     <ImageView
         android:id="@+id/feed_logo"
         android:contentDescription="@null"
-        android:layout_width="@dimen/logo_size"
-        android:adjustViewBounds="true"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="@dimen/bottom_padding"
-        android:layout_marginRight="@dimen/bottom_padding"
-        android:layout_marginTop="@dimen/bottom_padding"
+        android:layout_marginEnd="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="35dp"
         android:src="@drawable/img_logo"/>
     <TextView
         android:id="@+id/feed_header"
@@ -24,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/feed_logo"
-        android:layout_marginTop="@dimen/bottom_padding"
+        android:layout_marginTop="43dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
@@ -38,16 +37,16 @@
         android:inputType="text|textMultiLine"
         android:textSize="@dimen/text_dialog_size"
         android:scrollbars="vertical"
-        android:maxLines="3"
+        android:maxLines="4"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/bottom_padding"
+        android:layout_marginTop="40dp"
+        android:layout_margin="48dp"
         android:ems="10"
         android:layout_below="@+id/feed_header"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
 
     <LinearLayout
-        android:id="@+id/ll_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/smile_header_padding"
@@ -69,31 +68,22 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Caption"
             android:textSize="@dimen/smile_caption_size"
             android:gravity="end"
-            android:layout_gravity="center_vertical|center_horizontal"
             tools:text="Дякуємо. команда Базисмед
             почне надавати найбільш професійну
             допомогу по Вашій потребі якомога скоріше."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_below="@+id/ll_edit"
-        android:layout_marginTop="@dimen/bottom_padding"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
         <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="@dimen/bottom_padding"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/smile_header_padding"
+            android:layout_marginRight="@dimen/smile_header_padding"
             android:background="@drawable/vertical_divider" />
         <Button
             android:id="@+id/feed_send"
             android:textColor="#fff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/bottom_padding"
             android:layout_gravity="center_horizontal|center_vertical"
             android:background="@drawable/button_feed"
             tools:text="Додати послугу"/>

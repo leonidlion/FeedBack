@@ -20,4 +20,6 @@
     <dimen name="smile_padding_port">16dp</dimen>
     <dimen name="smile_padding_land">16dp</dimen>
     <dimen name="logo_size">86dp</dimen>
+    <dimen name="user_icon_size">50dp</dimen>
+    <dimen name="bottom_padding">18dp</dimen>
 </resources>

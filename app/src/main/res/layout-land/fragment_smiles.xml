@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
@@ -15,11 +14,11 @@
             android:layout_width="@dimen/logo_size"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            app:srcCompat="@drawable/img_logo"/>
+            android:src="@drawable/img_logo"/>
         <TextView
             android:padding="@dimen/smile_header_padding"
             android:textSize="@dimen/text_smile_header"
-            android:textAlignment="center"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/smile_text_header"
@@ -27,7 +26,7 @@
         <TextView
             android:paddingBottom="@dimen/text_smile_header_second"
             android:textSize="@dimen/text_smile_header_second"
-            android:textAlignment="center"
+            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/smile_second_header"
@@ -38,7 +37,8 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:baselineAligned="false">
         <RelativeLayout
             android:background="@drawable/linear_border"
             android:gravity="center_horizontal"
@@ -47,15 +47,16 @@
             android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/ib_bad_smile"
+                android:contentDescription="@null"
                 android:layout_margin="@dimen/smile_image_padding"
                 android:scaleType="fitXY"
                 android:adjustViewBounds="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_angry"/>
+                />
             <TextView
                 android:textSize="@dimen/smile_caption_size"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textAllCaps="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:text="@string/bad_smile_caption"
@@ -73,15 +74,16 @@
             android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/ib_neutral_smile"
+                android:contentDescription="@null"
                 android:scaleType="fitXY"
                 android:layout_margin="@dimen/smile_image_padding"
                 android:adjustViewBounds="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_confused"/>
+                />
             <TextView
                 android:textSize="@dimen/smile_caption_size"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textAllCaps="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:text="@string/neutral_smile_caption"
@@ -99,15 +101,16 @@
             android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/ib_good_smile"
+                android:contentDescription="@null"
                 android:scaleType="fitXY"
                 android:layout_margin="@dimen/smile_image_padding"
                 android:adjustViewBounds="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_happy"/>
+                />
             <TextView
                 android:textSize="@dimen/smile_caption_size"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textAllCaps="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:text="@string/good_smile_caption"
