@@ -3,7 +3,6 @@ package com.leodev.feedback.ui.fragments;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -15,17 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.leodev.feedback.R;
 import com.leodev.feedback.Utils;
-import com.leodev.feedback.mvp.model.Feedback;
-
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,7 +26,7 @@ import butterknife.OnClick;
 public class SendMessageFragment extends Fragment {
     private static final String ARGS_PAGE = "ARGS_PAGE";
     private int mSmileId;
-    private OnBackPressedListener mCallback;
+    private ClickInteractions mCallback;
     @BindView(R.id.feed_header)
     TextView mTextHeader;
     @BindView(R.id.feed_message)
@@ -51,14 +42,15 @@ public class SendMessageFragment extends Fragment {
     @BindView(R.id.feed_smile)
     ImageView mSmile;
 
-    public interface OnBackPressedListener{
+    public interface ClickInteractions {
         void onBackClick();
+        void onSendClick(int root, String message);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mCallback = (OnBackPressedListener) context;
+        mCallback = (ClickInteractions) context;
     }
 
     @Override
@@ -69,32 +61,15 @@ public class SendMessageFragment extends Fragment {
 
     @OnClick({R.id.feed_send, R.id.feed_back_icon, R.id.feed_back_text})
     public void onClick(View view){
-        switch (view.getId()){
-            case R.id.feed_send:
-                String text = mMessage.getText().toString();
-                if (TextUtils.isEmpty(text)){
-                    text = Utils.getEmptyMessage(mSmileId);
-                }
-                Feedback feedback = new Feedback();
-                feedback.setDate(new Date().getTime());
-                feedback.setText(text);
-
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference reference = database.getReference(Utils.getFeedRoot(mSmileId));
-                reference.push().updateChildren(feedback.getFeedMap()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(getContext(), "Успішно", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                break;
-            case R.id.feed_back_icon:
-                mCallback.onBackClick();
-                break;
-            case R.id.feed_back_text:
-                mCallback.onBackClick();
-                break;
+        hideKeyboard();
+        if (view.getId() == R.id.feed_send){
+            String text = mMessage.getText().toString();
+            if (TextUtils.isEmpty(text)){
+                text = Utils.getEmptyMessage(mSmileId);
+            }
+            mCallback.onSendClick(mSmileId, text);
         }
+        mCallback.onBackClick();
     }
 
     public static SendMessageFragment newInstance(int page) {
@@ -126,8 +101,13 @@ public class SendMessageFragment extends Fragment {
 
     private void showKeyboard() {
         mMessage.requestFocus();
-        InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+//        InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+    }
+
+    private void hideKeyboard(){
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(mMessage.getWindowToken(), 0);
     }
 
     private void initText(){

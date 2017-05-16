@@ -7,16 +7,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.leodev.feedback.R;
+import com.leodev.feedback.Utils;
 import com.leodev.feedback.event.EventMainChangeFragment;
+import com.leodev.feedback.mvp.model.Feedback;
 import com.leodev.feedback.ui.fragments.ChoicerFragment;
 import com.leodev.feedback.ui.fragments.SendMessageFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements SendMessageFragment.OnBackPressedListener{
+
+public class MainActivity extends AppCompatActivity implements SendMessageFragment.ClickInteractions {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,17 +68,18 @@ public class MainActivity extends AppCompatActivity implements SendMessageFragme
     }
 
     @Override
-    public void onBackPressed() {
-        int count = getSupportFragmentManager().getBackStackEntryCount();
-        if (count == 0){
-            super.onBackPressed();
-        } else {
-            getSupportFragmentManager().popBackStack();
-        }
+    public void onBackClick() {
+        getSupportFragmentManager().popBackStack();
     }
 
     @Override
-    public void onBackClick() {
-        getSupportFragmentManager().popBackStack();
+    public void onSendClick(int root, String message) {
+        Feedback feedback = new Feedback();
+        feedback.setDate(new Date().getTime());
+        feedback.setText(message);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(Utils.getFeedRoot(root));
+        reference.push().updateChildren(feedback.getFeedMap());
     }
 }

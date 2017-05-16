@@ -48,7 +48,7 @@
 
     <string-array name="feed_btn_text">
         <item name="bad">Прийняти міри</item>
-        <item name="neutral">Покращити до наступного \n мого візиту</item>
+        <item name="neutral">Покращити до наступного мого візиту</item>
         <item name="good">Додати послугу</item>
     </string-array>
 
