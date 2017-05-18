@@ -18,10 +18,11 @@
     <dimen name="smile_caption_size">24sp</dimen>
     <dimen name="smile_caption_bottom_margin">18dp</dimen>
     <dimen name="text_smile_header">48sp</dimen>
+    <dimen name="text_smile_header_land">54sp</dimen>
     <dimen name="text_smile_header_second">24sp</dimen>
     <dimen name="smile_padding_port">64dp</dimen>
     <dimen name="smile_padding_land">64dp</dimen>
-    <dimen name="logo_size">200dp</dimen>
+    <dimen name="logo_size">250dp</dimen>
     <dimen name="user_icon_size">100dp</dimen>
     <dimen name="bottom_padding">48dp</dimen>
 </resources>

@@ -16,6 +16,7 @@
     <dimen name="smile_caption_size">12sp</dimen>
     <dimen name="smile_caption_bottom_margin">8dp</dimen>
     <dimen name="text_smile_header">20sp</dimen>
+    <dimen name="text_smile_header_land">26sp</dimen>
     <dimen name="text_smile_header_second">14sp</dimen>
     <dimen name="smile_padding_port">16dp</dimen>
     <dimen name="smile_padding_land">16dp</dimen>

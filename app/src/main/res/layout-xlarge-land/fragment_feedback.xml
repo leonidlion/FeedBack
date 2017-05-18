@@ -6,18 +6,16 @@
     <ImageView
         android:id="@+id/feed_logo"
         android:contentDescription="@null"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/logo_size"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="45dp"
-        android:layout_marginRight="45dp"
-        android:layout_marginTop="35dp"
+        android:padding="25dp"
         android:src="@drawable/img_logo"/>
     <TextView
         android:id="@+id/feed_header"
-        android:textSize="@dimen/text_smile_header"
+        android:textSize="@dimen/text_smile_header_land"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         android:layout_width="wrap_content"
