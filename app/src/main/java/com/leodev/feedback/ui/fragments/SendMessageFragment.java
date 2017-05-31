@@ -71,6 +71,11 @@ public class SendMessageFragment extends Fragment {
         }
         mCallback.onBackClick();
     }
+    @OnClick(R.id.rl_feedback)
+    public void hideKeyboardClick(){
+
+        hideKeyboard();
+    }
 
     public static SendMessageFragment newInstance(int page) {
         Bundle args = new Bundle();
