@@ -47,7 +47,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/ib_bad_smile"
+                android:id="@+id/ib_good_smile"
                 android:contentDescription="@null"
                 android:layout_margin="@dimen/smile_image_padding"
                 android:scaleType="fitXY"
@@ -60,7 +60,7 @@
                 android:gravity="center"
                 android:textAllCaps="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:text="@string/bad_smile_caption"
+                android:text="@string/good_smile_caption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/smile_caption_bottom_margin"
@@ -101,7 +101,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/ib_good_smile"
+                android:id="@+id/ib_bad_smile"
                 android:contentDescription="@null"
                 android:scaleType="fitXY"
                 android:layout_margin="@dimen/smile_image_padding"
@@ -114,7 +114,7 @@
                 android:gravity="center"
                 android:textAllCaps="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:text="@string/good_smile_caption"
+                android:text="@string/bad_smile_caption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/smile_caption_bottom_margin"

@@ -63,7 +63,7 @@ public class FeedbackFragment extends Fragment {
 
     private void initSmiles(){
         Glide.with(this)
-                .load(R.drawable.angry).asGif()
+                .load(R.drawable.angry).asBitmap()
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                .into(mBadSmile);
         Glide.with(this)
