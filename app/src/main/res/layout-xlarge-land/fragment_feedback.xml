@@ -89,7 +89,8 @@
             android:id="@+id/feed_send"
             android:textColor="#fff"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:textSize="24sp"
             android:layout_centerInParent="true"
             android:layout_toRightOf="@+id/divider"
             android:layout_toEndOf="@+id/divider"
@@ -100,7 +101,7 @@
     <ImageView
         android:id="@+id/feed_back_icon"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="34dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -115,7 +116,7 @@
         android:textColor="#aa0a23"
         android:textAllCaps="true"
         android:textStyle="bold"
-        android:gravity="center_horizontal|center_vertical"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/feed_back_icon"
@@ -124,12 +125,12 @@
         android:layout_toEndOf="@+id/feed_back_icon"
         android:layout_toRightOf="@+id/feed_back_icon"
         android:text="@string/feed_fragment_back"
-        android:layout_alignTop="@+id/feed_back_icon"/>
+        />
 
     <ImageView
         android:id="@+id/feed_smile"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="34dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/feed_back_icon"
@@ -142,6 +143,7 @@
         android:contentDescription="@null"
         android:textAllCaps="true"
         android:gravity="center"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/feed_back_text"
