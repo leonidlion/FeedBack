@@ -42,13 +42,13 @@
 
     <string-array name="answer_arr">
         <item name="bad_answer">Дякую за звернення. \n Я, директор О.Самбольський, \n прийму відповідні міри сьогодні ж !</item>
-        <item name="neutral_answer">Дякуємо. Постараємось покращити \n ще до наступного Вашого візиту.</item>
+        <item name="neutral_answer">Постараємось покращити \n ще до наступного Вашого візиту.</item>
         <item name="good_answer">Дякуємо. команда Базисмед \n почне надавати найбільш професійну \n допомогу по Вашій потребі якомога скоріше.</item>
     </string-array>
 
     <string-array name="feed_btn_text">
         <item name="bad">Прийняти міри</item>
-        <item name="neutral">Покращити до наступного мого візиту</item>
+        <item name="neutral">Дякую</item>
         <item name="good">Додати послугу</item>
     </string-array>
 
